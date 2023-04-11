@@ -1,0 +1,56 @@
+<div class="container" *ngIf="imageInput">
+    <img class="galleryImage" [src]="'assets/' + imageInput.id + '.jpg'"/>
+    <div class="break"></div>
+    <div>{{imageInput.type}}</div>
+
+    <div class="break"></div>
+
+    <!--<div>
+        <table>
+            <tr>
+                <th>Szabad időpontok</th>
+            </tr>
+        </table>
+    </div>-->
+
+    <div class="break"></div>
+    <div *ngIf="appointments.length">
+        <table>
+            <tr>
+                <th>Rendelés típusa</th>
+                <th>Név</th>
+                <th>Időpont</th>
+                <th>Panasz</th>
+            </tr>
+            <tr *ngFor="let appointment of appointments">
+                <td>{{imageInput.type}}</td>
+                <td>{{appointment.username}}</td>
+                <td>{{appointment.date | dateFormat}}</td>
+                <td>{{appointment.comment}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="break"></div>
+
+    <div>
+        <label for="type">Rendelés típusa: </label>
+        <input type="text" value={{imageInput.type}}/>
+    </div>
+    <div class="break"></div>
+    <div><label for="username">Név: </label>
+         <input type="text" [(ngModel)]="appointmentObject['username']"/>
+    </div>
+    <div class="break"></div>
+    <div>
+        <label for="date">Dátum: </label>
+        <input type="datetime-local" [(ngModel)]="appointmentObject['date']"/>
+    </div>
+    <div class="break"></div>
+    <div>
+        <textarea placeholder="Panasz rövid leírása" rows="10" cols="50" [(ngModel)]="appointmentObject['comment']"></textarea>
+    </div>
+    <div class="break"></div>
+    <div>
+        <button (click)="saveDate()" [routerLink]="'/gallery/successful/' + appointmentObject['username']">Időpont foglalása</button>
+    </div>
+</div>

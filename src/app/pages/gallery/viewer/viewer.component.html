@@ -31,26 +31,27 @@
         </table>
     </div>
     <div class="break"></div>
-
-    <div>
-        <label for="type">Rendelés típusa: </label>
-        <input type="text" value={{imageInput.type}}/>
-    </div>
-    <div class="break"></div>
-    <div><label for="username">Név: </label>
-         <input type="text" [(ngModel)]="appointmentObject['username']"/>
-    </div>
-    <div class="break"></div>
-    <div>
-        <label for="date">Dátum: </label>
-        <input type="datetime-local" [(ngModel)]="appointmentObject['date']"/>
-    </div>
-    <div class="break"></div>
-    <div>
-        <textarea placeholder="Panasz rövid leírása" rows="10" cols="50" [(ngModel)]="appointmentObject['comment']"></textarea>
-    </div>
-    <div class="break"></div>
-    <div>
-        <button (click)="saveDate()" [routerLink]="'/gallery/successful/' + appointmentObject['username']">Időpont foglalása</button>
-    </div>
+    <form [formGroup]="appointmentsForm" (ngSubmit)="saveDate()">
+        <div>
+            <label for="type">Rendelés típusa: </label>
+            <input type="text" value={{imageInput.type}}/>
+        </div>
+        <div class="break"></div>
+        <div><label for="username">Név: </label>
+            <input type="text" formControlName="username"/>
+        </div>
+        <div class="break"></div>
+        <div>
+            <label for="date">Dátum: </label>
+            <input type="datetime-local" formControlName="date"/>
+        </div>
+        <div class="break"></div>
+        <div>
+            <textarea placeholder="Panasz rövid leírása" rows="10" cols="50" formControlName ="comment"></textarea>
+        </div>
+        <div class="break"></div>
+        <div>
+            <button type="submit">Időpont foglalása</button>
+        </div>
+    </form>
 </div>

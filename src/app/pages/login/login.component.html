@@ -1,0 +1,15 @@
+<div class="main_component">
+    <h1>Időpontfoglaláshoz jelentkezzen be!</h1>
+    <span>
+        <label for="email">Email: </label>
+        <input type="text" [formControl]="email"/>
+    </span>
+    <span>
+        <label for="password">Jelszó: </label>
+        <input type="password" [formControl]="password"/>
+    </span>
+    <span>
+        <button (click)="login()">Bejelentkezés</button>
+        <button [routerLink]="'/signup'">Regisztráció</button>
+    </span>
+</div>

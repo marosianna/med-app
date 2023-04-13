@@ -1,18 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { GalleryObject } from '../../shared/constants/constants';
+//import { GalleryObject } from '../../shared/constants/constants';
+import { GalleryRoutingModule } from './gallery-routing.module';
+import { GalleryService } from '../../shared/services/gallery.service';
+import { Image } from '../../shared/models/Image';
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
-  galleryObject: Array<any> = GalleryObject;
-  chosenImage: any;
+  galleryObject?: Array<Image>;
+  chosenImage?: Image;
 
-  constructor() { 
+  constructor(private galleryService: GalleryService) { 
   }
 
   ngOnInit(): void {
+    this.galleryService.loadImageMeta('img.json').subscribe((data: Array<Image>)=>{
+      this.galleryObject = data;
+    })
   }
 
   loadImage(imageObject:any){

@@ -6,7 +6,7 @@
 }
 
 .galleryImage{
-    width: 25%;
+    width: 50%;
     height: auto;
 }
 
@@ -22,4 +22,21 @@ table, th, td {
 form{
    width: 100%;
    text-align: center;
+}
+
+.div-card{
+    padding: 50px;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+mat-card-content{
+    text-align: center;
+}
+
+mat-card-header{
+    display: initial;
+    text-align: center;
 }

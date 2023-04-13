@@ -1,4 +1,29 @@
-<app-menu (selectedPage)="changePage($event)" [currentPage]="page"></app-menu>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <app-menu (selectedPage)="changePage($event)" [currentPage]="page" *ngIf="page" (onCloseSidenav)="onClose($event, sidenav)"></app-menu>
+  </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <div fxHide.gt-xs>
+          <button mat-icon-button (click)="onToggleSidenav(sidenav)">
+            <mat-icon>menu</mat-icon>
+          </button>
+      </div>
+        <div>ORVOSI IDŐPONTFOGLALÓ OLDAL</div>
+        <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+          <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+            <li><a routerLink="/login">Bejelentkezés</a></li>
+            <li><a routerLink="/signup">Regisztráció</a></li>
+            <li><a routerLink="/main">Főoldal</a></li>
+            <li><a routerLink="/profil">Profil</a></li>
+            <li><a routerLink="/gallery">Időpontfoglalás</a></li>
+          </ul>
+        </div>
+      </mat-toolbar>
+    <router-outlet></router-outlet> 
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
 <!--<ng-container [ngSwitch]="page">
   <ng-container *ngSwitchCase ="'main'">
     <div class="main_component">
@@ -13,4 +38,3 @@
   </ng-container>
 </ng-container>
 -->
-<router-outlet></router-outlet> 

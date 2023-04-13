@@ -3,31 +3,35 @@
     <div class="div-flex">
         <h1>Regisztráljon egy felhasználói fiókot!</h1>
         <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-            <div>
-                <label for="email">Email: </label>
-                <input type="text" formControlName="email"/>
+            <mat-form-field>
+                <mat-label for="email">Email: </mat-label>
+                <input matInput type="text" formControlName="email"/>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label for="password">Jelszó: </mat-label>
+                <input matInput type="password" formControlName="password"/>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label for="rePassword">Jelszó megerősítése: </mat-label>
+                <input matInput type="password" formControlName="rePassword"/>
+            </mat-form-field>
+            <div formGroupName="name" class="subForm">
+                <mat-form-field>
+                    <mat-label for="lastname">Vezetéknév: </mat-label>
+                    <input matInput type="text" formControlName="lastname"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="firstname">Keresztnév: </mat-label>
+                    <input matInput type="text" formControlName="firstname"/>
+                </mat-form-field>
             </div>
             <div>
-                <label for="password">Jelszó: </label>
-                <input type="password" formControlName="password"/>
-            </div>
-            <div>
-                <label for="rePassword">Jelszó megerősítése: </label>
-                <input type="password" formControlName="rePassword"/>
-            </div>
-            <div formGroupName="name">
-                <div>
-                    <label for="lastname">Vezetéknév: </label>
-                    <input type="text" formControlName="lastname"/>
-                </div>
-                <div>
-                    <label for="firstname">Keresztnév: </label>
-                    <input type="text" formControlName="firstname"/>
-                </div>
-            </div>
-            <div>
-                <button type="submit">Regisztráció</button>
-                <button (click)="goBack()">Vissza</button>
+                <span class="buttons">
+                    <button mat-raised-button color="primary" type="submit">Regisztráció</button>
+                </span>
+                <span class="buttons">
+                    <button mat-raised-button color="primary" (click)="goBack()">Vissza</button>
+                </span>
             </div>
         </form>
     </div>

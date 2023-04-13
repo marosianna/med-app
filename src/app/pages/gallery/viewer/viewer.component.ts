@@ -1,15 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Appointment } from '../../../shared/models/Appointment';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Image } from '../../../shared/models/Image';
+import { GalleryService } from '../../../shared/services/gallery.service';
 
 @Component({
   selector: 'app-viewer',
   templateUrl: './viewer.component.html',
   styleUrls: ['./viewer.component.scss']
 })
-export class ViewerComponent implements OnInit{
-  @Input() imageInput: any;
+export class ViewerComponent implements OnInit, OnChanges{
+  @Input() imageInput?: Image;
+  loadedImage?: String;
 
   //appointmentObject: any = {};
 
@@ -22,9 +25,23 @@ export class ViewerComponent implements OnInit{
   });
 
 
-  constructor(private fb: FormBuilder, private router: Router){}
+  constructor(private fb: FormBuilder, private router: Router, private galleryService: GalleryService){}
+
+
+  ngOnChanges(){
+    if (this.imageInput?.id){
+      this.galleryService.loadImage(this.imageInput?.id + '.jpg').subscribe(data =>{
+        let reader = new FileReader();
+        reader.readAsDataURL(data);
+        reader.onloadend = () => {
+          this.loadedImage = reader.result as string;
+        }
+      });
+    }
+  }
 
   ngOnInit(): void {
+   
     
   }
 

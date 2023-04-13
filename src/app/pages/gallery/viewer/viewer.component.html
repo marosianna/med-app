@@ -1,17 +1,11 @@
+
+<!--
 <div class="container" *ngIf="imageInput">
-    <img class="galleryImage" [src]="'assets/' + imageInput.id + '.jpg'"/>
+    <img class="galleryImage" [src]="loadedImage"/>
     <div class="break"></div>
     <div>{{imageInput.type}}</div>
 
     <div class="break"></div>
-
-    <!--<div>
-        <table>
-            <tr>
-                <th>Szabad időpontok</th>
-            </tr>
-        </table>
-    </div>-->
 
     <div class="break"></div>
     <div *ngIf="appointments.length">
@@ -54,4 +48,66 @@
             <button type="submit">Időpont foglalása</button>
         </div>
     </form>
+</div>
+-->
+
+
+<div class="div-card" *ngIf="imageInput">
+    <mat-card fxLayout fxLayoutGap="20px">
+        <span fxFlex="1 1 50%">
+        <mat-card-header>
+            <mat-card-title>
+                {{imageInput.type}}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <img class="galleryImage" [src]="loadedImage"/>
+            <div class="break"></div>
+            <!--<div>{{imageInput.type}}</div>-->
+
+            <div class="break"></div>
+        </mat-card-content>
+        </span>
+        <span fxFlex="1 1 50%">
+        <mat-card-actions>
+            <form [formGroup]="appointmentsForm" (ngSubmit)="saveDate()">
+                <div>
+                    <mat-form-field>
+                        <mat-label for="type">Rendelés típusa: </mat-label>
+                        <input matInput type="text" value={{imageInput.type}}/>
+                    </mat-form-field>
+                </div>
+                <div class="break"></div>
+                <div>
+                    <mat-form-field>
+                        <mat-label for="username">Név: </mat-label>
+                        <input matInput type="text" formControlName="username"/>
+                    </mat-form-field>
+                </div>
+                <div class="break"></div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label for="date">Dátum: </mat-label>
+                        <input matInput [matDatepicker]="picker" type="datetime-local" formControlName="date"/>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="break"></div>
+                <div>
+                    <mat-form-field>
+                        <mat-label for="comment">Panasz: </mat-label>
+                        <textarea matInput placeholder="Panasz rövid leírása" rows="10" cols="50" formControlName ="comment"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="break"></div>
+                <div>
+                    <button mat-raised-button color="primary" type="submit">Időpont foglalása</button>
+                </div>
+            </form>
+        </mat-card-actions>
+        </span>
+
+    </mat-card>
+
 </div>

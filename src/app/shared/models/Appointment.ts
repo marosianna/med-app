@@ -1,11 +1,11 @@
 import { Time } from "@angular/common";
 
 export interface Appointment{
-    username: string;
-    date: Date;
+    id: string;
+    username?: string;
+    date: number;
     comment: string;
-    time: {
-        hour: number;
-        minute: number;
-    }
+    imageId?: string; 
+    time: string;
+    
 }

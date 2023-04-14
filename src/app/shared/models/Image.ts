@@ -1,5 +1,6 @@
 export interface Image{
-    id: number;
+    id: string;
     type: string;
+    image_url: string;
 
 }

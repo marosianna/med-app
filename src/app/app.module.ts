@@ -40,7 +40,7 @@ import {AngularFireModule} from '@angular/fire/compat'
     BrowserModule,
     AppRoutingModule,
     FormsModule, 
-    HttpClientModule,
+    HttpClientModule, 
     BrowserAnimationsModule,
     MatSidenavModule,
     MatToolbarModule,

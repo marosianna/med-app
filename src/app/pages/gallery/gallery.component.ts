@@ -17,11 +17,12 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit(): void {
     this.galleryService.loadImageMeta('img.json').subscribe((data: Array<Image>)=>{
+      console.log(data);
       this.galleryObject = data;
     })
   }
 
-  loadImage(imageObject:any){
+  loadImage(imageObject:Image){
     this.chosenImage = imageObject;
   }
 }

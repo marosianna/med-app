@@ -1,16 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DatePipe } from '@angular/common';
 
 @Pipe({
   name: 'dateFormat'
 })
 export class DateFormatPipe implements PipeTransform {
 
-  transform(value: any): any {
-    const datePipe = new DatePipe('en-US'); 
-    const formattedDate = datePipe.transform(value, 'yyyy-MM-dd HH:mm');
-    return formattedDate;
-
+  transform(value: number, ...args: unknown[]): string {
+    let tzoffset = (new Date(value)).getTimezoneOffset() * 60000;
+    let minOffSet = new Date(value).getTime() - tzoffset
+    let localISOTime = (new Date(minOffSet)).toISOString().replace('Z', '').replace('T', ' ');
+    return localISOTime;
+    // return null;
   }
 
 }

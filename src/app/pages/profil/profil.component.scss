@@ -9,14 +9,22 @@ mat-card{
     align-self: center;
 }
 
-.div-flex{
+/*.div-flex{
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
     height: 80%;
-}
+}*/
 
 mat-card-header{
     display: initial;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
 }

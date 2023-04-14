@@ -21,7 +21,8 @@ export class ViewerComponent implements OnInit, OnChanges{
   appointmentsForm = this.createForm({
     username: '',
     date: new Date(),
-    comment: ''
+    comment: '',
+    time: {hour: 0, minute: 0}
   });
 
 
@@ -50,13 +51,14 @@ export class ViewerComponent implements OnInit, OnChanges{
     formGroup.get('username')?.addValidators([Validators.required]);
     formGroup.get('date')?.addValidators([Validators.required]);
     formGroup.get('comment')?.addValidators([Validators.required, Validators.minLength(20)]);
+    formGroup.get('time')?.addValidators([Validators.required]);
 
     return formGroup;
   }
 
   saveDate(){
     if(this.appointmentsForm.valid){
-      if(this.appointmentsForm.get('username') && this.appointmentsForm.get('date') && this.appointmentsForm.get('comment')){
+      if(this.appointmentsForm.get('username') && this.appointmentsForm.get('date') && this.appointmentsForm.get('comment')  && this.appointmentsForm.get('time')){
         this.appointments.push({...this.appointmentsForm.value});
         this.router.navigateByUrl('/gallery/successful/' + this.appointmentsForm.get('username')?.value);
       }

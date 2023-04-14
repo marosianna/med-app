@@ -88,10 +88,14 @@
                 <div>
                     <mat-form-field appearance="fill">
                         <mat-label for="date">Dátum: </mat-label>
-                        <input matInput [matDatepicker]="picker" type="datetime-local" formControlName="date"/>
+                        <input matInput [matDatepicker]="picker" formControlName="date"/>
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
+                        <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label for="time">Időpont: </mat-label>
+                        <input type="time" matInput name="week" min="08:00" max="18:00">
+                     </mat-form-field>
                 </div>
                 <div class="break"></div>
                 <div>

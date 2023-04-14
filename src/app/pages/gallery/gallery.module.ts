@@ -17,6 +17,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
+
 @NgModule({
   declarations: [
     GalleryComponent,
@@ -37,7 +38,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatButtonModule,
     FlexLayoutModule, 
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ]
 })
 export class GalleryModule { }

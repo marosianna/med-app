@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FakeLoadingService } from '../../shared/services/fake-loading.service';
 import { Observable, Subscription } from 'rxjs';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnDestroy {
 
   loading: boolean = false;
 
-  constructor(private router: Router, private loadingService: FakeLoadingService){
+  constructor(private router: Router, private loadingService: FakeLoadingService, private authService: AuthService){
 
   }
 
@@ -43,7 +44,7 @@ export class LoginComponent implements OnDestroy {
     }
 */
     // observable
-    this.loadingObservation = this.loadingService.loadingWithObservable(this.email.value, this.password.value)
+   /* this.loadingObservation = this.loadingService.loadingWithObservable(this.email.value, this.password.value)
     this.loadingSubscription = this.loadingObservation
       .subscribe(
         {
@@ -57,7 +58,16 @@ export class LoginComponent implements OnDestroy {
             this.loading = false;
           }
         }
-      );
+      );*/
+
+      this.authService.login(this.email.value as string, this.password.value as string).then(cred =>{
+        console.log(cred);
+        this.router.navigateByUrl('/main');
+        this.loading = false;
+      }).catch(error =>{
+        console.error(error);
+        this.loading = false;
+      });
   }
   ngOnDestroy(){
     this.loadingSubscription?.unsubscribe();

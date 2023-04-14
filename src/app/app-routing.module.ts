@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './shared/services/auth.guard';
 
 const routes: Routes = [
   { 
     path: 'main',
-    loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule) 
+    loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule),
+    canActivate: [AuthGuard]
   },
   { 
     path: 'profil',
-    loadChildren: () => import('./pages/profil/profil.module').then(m => m.ProfilModule) 
+    loadChildren: () => import('./pages/profil/profil.module').then(m => m.ProfilModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'gallery',
-    loadChildren: () => import('./pages/gallery/gallery.module').then(m => m.GalleryModule) 
+    loadChildren: () => import('./pages/gallery/gallery.module').then(m => m.GalleryModule),
+    canActivate: [AuthGuard]
   },
   { 
     path: 'not-found',
@@ -20,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/main',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },

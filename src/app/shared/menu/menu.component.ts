@@ -10,12 +10,19 @@ export class MenuComponent {
 
   @Input() currentPage: string = '';
 
+  @Input() loggedInUser?: firebase.default.User | null;
+
   @Output() onCloseSidenav: EventEmitter<boolean> = new EventEmitter();
+
+  @Output() onLogout: EventEmitter<boolean> = new EventEmitter();
 
   menuSwitch(){
     this.selectedPage.emit(this.currentPage);
   }
-  close(){
+  close(logout?: boolean){
+    if(logout === true){
+      this.onLogout.emit(logout);
+    }
     this.onCloseSidenav.emit(true);
   }
 }

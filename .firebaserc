@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "webkert-med-app": {
+      "hosting": {
+        "med-app": [
+          "webkert-med-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "webkert-med-app"
+  }
+}

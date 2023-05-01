@@ -5,18 +5,18 @@
     },
     {
         "id": "02",
-        "type": "Kardiológia"
+        "type": "Kardiológia rendelés"
     },
     {
         "id": "03",
-        "type": "Radiológia"
+        "type": "Radiológia rendelés"
     },
     {
         "id": "04",
-        "type": "Sebészet"
+        "type": "Sebészeti rendelés"
     },
     {
         "id": "05",
-        "type": "Laboratórium"
+        "type": "Labor vizsgálat"
     }
 ]

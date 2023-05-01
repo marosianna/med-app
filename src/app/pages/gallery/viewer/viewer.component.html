@@ -57,30 +57,38 @@
         <span fxFlex="1 1 50%">
         <mat-card-header>
             <mat-card-title>
-                {{imageInput.type}}
+                {{imageInput.id}}
             </mat-card-title>
         </mat-card-header>
         <mat-card-content>
+
             <img class="galleryImage" [src]="loadedImage"/>
             <div class="break"></div>
             <!--<div>{{imageInput.type}}</div>-->
-
+            <form [formGroup]="appointmentsForm" (ngSubmit)="deleteAppointment()">
             <div class="center" *ngIf="appointments.length">
-                <table>
+                
+                <table mat-table>
                     <tr>
+                        <th>Rendelés</th>
                         <th>Név</th>
                         <th>Dátum</th>
                         <th>Időpont</th>
                         <th>Panasz</th>
                     </tr>
                     <tr *ngFor="let appointment of appointments">
+                        <td>{{appointment.imageId}}</td>
                         <td>{{appointment.username}}</td>
                         <td>{{appointment.date.seconds * 1000 | date:'yyyy-MM-dd'}}</td>
                         <td>{{appointment.time }}</td>
                         <td>{{appointment.comment}}</td>
+                        <td><button mat-raised-button color="warn" type="submit" (click)="id = appointment.id">Törlés</button></td>
+                        <td><button mat-raised-button color="primary" (click)="getAppointment(appointment.id)">Módosítás</button></td>
                     </tr>
                 </table>
+            
             </div>
+        </form>
     
 
             <div class="break"></div>
@@ -92,7 +100,7 @@
                 <div>
                     <mat-form-field>
                         <mat-label for="type">Rendelés típusa: </mat-label>
-                        <input matInput type="text" value={{imageInput.type}}/>
+                        <input matInput type="text" value={{imageInput.id}}/>
                     </mat-form-field>
                 </div>
                 <div class="break"></div>
@@ -124,7 +132,7 @@
                 </div>
                 <div class="break"></div>
                 <div>
-                    <button mat-raised-button color="primary" type="submit">Időpont foglalása</button>
+                    <button mat-raised-button color="primary" type="submit" >Időpont foglalása</button>
                 </div>
             </form>
         </mat-card-actions>

@@ -8,6 +8,7 @@ import { AppointmentService } from '../../../shared/services/appointment.service
 import { UserService } from '../../../shared/services/user.service';
 import { User } from '../../../shared/models/User';
 
+
 @Component({
   selector: 'app-viewer',
   templateUrl: './viewer.component.html',
@@ -17,6 +18,7 @@ export class ViewerComponent implements OnInit, OnChanges{
   @Input() imageInput?: any; // Image-nek kellene lennie, de akkor hibákat dob
   loadedImage?: string;
   user?: User;
+  id? : string;
 
   //appointmentObject: any = {};
 
@@ -76,7 +78,7 @@ export class ViewerComponent implements OnInit, OnChanges{
     return formGroup;
   }
 
-  saveDate(){
+  createDate(){
     if(this.appointmentsForm.valid){
       if(this.appointmentsForm.get('username') && this.appointmentsForm.get('date') && this.appointmentsForm.get('comment')  && this.appointmentsForm.get('time')){
         this.appointments.push({...this.appointmentsForm.value});
@@ -91,6 +93,77 @@ export class ViewerComponent implements OnInit, OnChanges{
         });
       }
     }
+   // this.getAppointment(this.appointmentsForm.get('id')?.value as string);
+
+
   }
 
+  updateAppointment(){
+    const appointment = this.appointmentsForm.value as Appointment;
+    this.appointmentService.update(appointment)
+    .then(() => {
+      console.log(`Appointment with id ${appointment.id} has been updated`);
+      this.appointments = this.appointments.map(item => item.id === appointment.id ? appointment : item);
+      this.appointmentsForm.reset();
+    })
+    .catch(error => {
+      console.error(`Error updating appointment with id ${appointment.id}:`, error);
+    });
+   // this.getAppointment(appointment.id);
+ 
+  }
+
+  saveDate(){
+    const id = this.appointmentsForm.get('id')?.value;
+
+  // Check if the appointment with the given id already exists
+  const existingAppointment = this.appointments.find((appointment) => appointment.id === id);
+
+  if (existingAppointment) {
+    this.updateAppointment();
+  }else{
+    this.createDate();
+  }
+  const appointmentId = this.appointmentsForm.get('id')?.value;
+  this.getAppointment(appointmentId as string);
 }
+
+  
+  getAppointment(id: string) {
+    this.appointmentService.getAppointmentById(id).subscribe((appointments) => {
+        console.log(`Appointment with id ${id} has been loaded`);
+        const appointment = appointments[0];
+        
+       
+
+    // Beállítjuk az űrlap mezőinek értékeit a kapott appointment adataira
+    this.appointmentsForm.patchValue({
+      id: appointment.id,
+      username: appointment.username,
+      date: appointment.date,
+      time: appointment.time,
+      comment: appointment.comment,
+      imageId: this.imageInput?.id
+    });
+      });
+     
+  }
+  
+
+
+  deleteAppointment() {
+    const id = this.id as string; // A megfelelő id értékének kinyerése az űrlapról
+  
+    this.appointmentService.delete(id)
+      .then(() => {
+        console.log(`Appointment with id ${id} has been deleted`);
+        this.appointments = this.appointments.filter(appointment => appointment.id !== id);
+      })
+      .catch(error => {
+        console.error(`Error deleting appointment with id ${id}:`, error);
+      });
+  }
+
+  
+}
+

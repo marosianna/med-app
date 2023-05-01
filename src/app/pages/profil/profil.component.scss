@@ -28,3 +28,31 @@ div {
     text-align: center;
     height: 100vh;
 }
+
+
+mat-form-field{
+    width: 100%;
+}
+
+mat-card-actions{
+    display: initial;
+}
+
+mat-card-actions{
+    width: 80%;
+    height: 80%;
+    align-self: center;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+.table-header-even {
+    background-color: rgb(201, 206, 213);
+}
+
+.table-header-odd {
+    background-color: rgb(136, 165, 207);
+}
+

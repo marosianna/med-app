@@ -7,10 +7,38 @@
                 Profil oldal
             </mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-            <p><mat-icon>person</mat-icon></p>
-            <p><mat-icon>mail</mat-icon></p>
-            <p><mat-icon>password</mat-icon></p>
-        </mat-card-content>
+        <mat-card-actions class="div-flex">
+            <form [formGroup]="userForm">
+            <mat-form-field>
+                <span><mat-icon>person</mat-icon></span>
+                <input matInput type="text" formControlName="username" readonly/>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <span><mat-icon>mail</mat-icon></span>
+                <input matInput type="text" formControlName="email" readonly/>
+            </mat-form-field>
+            </form>
+        </mat-card-actions>
+        <div class="div-flex" *ngIf="appointments.length">
+            <table mat-table>
+                <tr>
+                    <th>Rendelés</th>
+                    <th>Név</th>
+                    <th>Dátum</th>
+                    <th>Időpont</th>
+                    <th>Panasz</th>
+                </tr>
+                <tr *ngFor="let appointment of appointments; let i = index; "[ngClass]="i % 2 === 0 ? 'table-header-even' : 'table-header-odd'">
+                    <td>{{appointment.imageId}}</td>
+                    <td>{{appointment.username}}</td>
+                    <td>{{appointment.date.seconds * 1000 | date:'yyyy-MM-dd'}}</td>
+                    <td>{{appointment.time }}</td>
+                    <td>{{appointment.comment}}</td>
+                </tr>
+            </table>
+        </div>
     </mat-card>
-</div>
+    
+    
+    </div>

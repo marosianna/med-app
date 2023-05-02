@@ -9,11 +9,11 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label for="password">Jelszó: </mat-label>
-                <input matInput type="password" formControlName="password"/>
+                <input matInput type="password" formControlName="password" minlength="6" required/>
             </mat-form-field>
             <mat-form-field>
                 <mat-label for="rePassword">Jelszó megerősítése: </mat-label>
-                <input matInput type="password" formControlName="rePassword"/>
+                <input matInput type="password" formControlName="rePassword" minlength="6" required/>
             </mat-form-field>
             <div formGroupName="name" class="subForm">
                 <mat-form-field>

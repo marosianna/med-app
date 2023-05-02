@@ -6,7 +6,7 @@ import { GalleryComponent } from './gallery.component';
 import { ListComponent } from './list/list.component';
 import { ViewerComponent } from './viewer/viewer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DateFormatPipe } from '../../shared/pipes/date-format.pipe';
+//import { DateFormatPipe } from '../../shared/pipes/date-format.pipe';
 import {MatSelectModule} from '@angular/material/select';
 import {MatOptionModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -24,7 +24,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     GalleryComponent,
     ListComponent,
     ViewerComponent,
-    DateFormatPipe
+   // DateFormatPipe
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FakeLoadingService } from '../../shared/services/fake-loading.service';
 import { Observable, Subscription } from 'rxjs';
@@ -12,13 +12,24 @@ import { AuthService } from '../../shared/services/auth.service';
 })
 export class LoginComponent implements OnDestroy {
 
-  email = new FormControl('');
-  password = new FormControl('');
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+});
 
   loadingSubscription?: Subscription;
   loadingObservation?: Observable<boolean>;
 
   loading: boolean = false;
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+  
+  get password() {
+    return this.loginForm.get('password');
+  }
+  
 
   constructor(private router: Router, private loadingService: FakeLoadingService, private authService: AuthService){
 
@@ -26,6 +37,24 @@ export class LoginComponent implements OnDestroy {
 
   async login(){
     this.loading = true;
+    await this.loginForm.markAllAsTouched();
+    if (this.loginForm.valid) {
+    this.authService.login(this.email?.value as string, this.password?.value as string).then(cred =>{
+      console.log(cred);
+      this.router.navigateByUrl('/main');
+      this.loading = false;
+    }).catch(error =>{
+      console.error(error);
+      this.loading = false;
+    });
+  } else {
+    console.error('Az űrlap érvénytelen!');
+    this.loading = false;
+  }
+  }
+  ngOnDestroy(){
+    this.loadingSubscription?.unsubscribe();
+}
    /* // promise, aszinkron
     this.loadingService.loadingWithPromise(this.email.value, this.password.value).then((_: boolean) => {
       this.router.navigateByUrl('/main');
@@ -60,16 +89,5 @@ export class LoginComponent implements OnDestroy {
         }
       );*/
 
-      this.authService.login(this.email.value as string, this.password.value as string).then(cred =>{
-        console.log(cred);
-        this.router.navigateByUrl('/main');
-        this.loading = false;
-      }).catch(error =>{
-        console.error(error);
-        this.loading = false;
-      });
-  }
-  ngOnDestroy(){
-    this.loadingSubscription?.unsubscribe();
-  }
+     
 }

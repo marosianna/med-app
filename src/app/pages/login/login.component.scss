@@ -1,4 +1,4 @@
-div {
+.div-flex {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,13 +7,24 @@ div {
 }
 .main_component{
     height: 100vh;
-    align-items: center;
 }
 
-span{
+form div{
     padding: 5px 5px 5px 5px;
 }
 
-mat-form-field{
+form{
+    display: inline-grid;
     width: 50%;
+    align-self: center;
+}
+
+.subForm{
+    width: 100%;
+    display: inline-grid;
+}
+
+.buttons{
+    padding: 5px;
+    width: 100px;
 }

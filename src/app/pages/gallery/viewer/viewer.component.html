@@ -90,8 +90,6 @@
             </div>
         </form>
     
-
-            <div class="break"></div>
         </mat-card-content>
         </span>
         <span fxFlex="1 1 50%">
@@ -100,14 +98,14 @@
                 <div>
                     <mat-form-field>
                         <mat-label for="type">Rendelés típusa: </mat-label>
-                        <input matInput type="text" value={{imageInput.id}}/>
+                        <input matInput type="text" value={{imageInput.id}} readonly/>
                     </mat-form-field>
                 </div>
                 <div class="break"></div>
                 <div>
                     <mat-form-field>
                         <mat-label for="username">Név: </mat-label>
-                        <input matInput type="text" formControlName="username"/>
+                        <input matInput type="text" formControlName="username" readonly/>
                     </mat-form-field>
                 </div>
                 <div class="break"></div>

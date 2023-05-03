@@ -5,7 +5,7 @@
         <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
             <mat-form-field>
                 <mat-label for="email">Email: </mat-label>
-                <input matInput type="text" formControlName="email"/>
+                <input matInput type="text" formControlName="email" required/>
             </mat-form-field>
             <mat-form-field>
                 <mat-label for="password">Jelszó: </mat-label>
@@ -18,11 +18,11 @@
             <div formGroupName="name" class="subForm">
                 <mat-form-field>
                     <mat-label for="lastname">Vezetéknév: </mat-label>
-                    <input matInput type="text" formControlName="lastname"/>
+                    <input matInput type="text" formControlName="lastname" required/>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label for="firstname">Keresztnév: </mat-label>
-                    <input matInput type="text" formControlName="firstname"/>
+                    <input matInput type="text" formControlName="firstname" required/>
                 </mat-form-field>
             </div>
             <div>

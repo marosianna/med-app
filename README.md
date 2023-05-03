@@ -25,3 +25,17 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Az alkalmazásról
+
+**bug**Bejelentkezésnél nem mindig dob át elsőre a főoldalra, ilyenkor nyomd meg mégegyszer a bejelentkezés gombot.
+
+**bug**Ha új időpontot foglalsz, megjelenik a rendelés képe alatt egy táblázatban az adott foglalás, ott tudod törölni vagy módosítani.
+**bug**Amennyiben módosítasz, a dátum betöltéséhez a táblázatban, meg kell nyomni mégegyszer az időpont foglalása gombot.
+
+A profil oldalon listázza az összes eddigi foglalást.
+
+Az időpontfoglalásnál listázza a kép alatt a táblázatban dátum szerint növekvő sorrendben a legelső 5 foglalást.
+
+**bug**Ha egyes rendeléshez még nincs foglalása a usernek, akkor a legutóbb listázott rendeléshez tartozó foglalások jelennek meg a táblázatban.

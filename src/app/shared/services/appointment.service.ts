@@ -34,7 +34,7 @@ export class AppointmentService {
   }
 
   getAppointmentByImageId(imageId: string){
-    return this.afs.collection<Appointment>(this.collectionName, ref => ref.where('imageId', '==', imageId).orderBy('date', 'asc')).valueChanges();
+    return this.afs.collection<Appointment>(this.collectionName, ref => ref.where('imageId', '==', imageId).orderBy('date', 'asc').limit(5)).valueChanges();
   }
 
   getAppointmentById(id: string){

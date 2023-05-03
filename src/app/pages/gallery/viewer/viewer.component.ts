@@ -41,13 +41,7 @@ export class ViewerComponent implements OnInit, OnChanges{
     private appointmentService: AppointmentService,
     private userService: UserService){}
 
-    table(){
-      if(this.imageInput.id){
-      this.appointmentService.getAppointmentByImageId(this.imageInput.id).subscribe(appointments =>{
-        this.appointments = appointments;
-      });
-    }
-    }
+    
 
   ngOnChanges(){
     if (this.imageInput?.id){
@@ -60,7 +54,14 @@ export class ViewerComponent implements OnInit, OnChanges{
           this.loadedImage = reader.result as string;
         }*/
       });
-      this.table();
+      /*this.appointmentService.getAppointmentsByUsername(this.user?.username).subscribe(data2 =>{
+        this.appointments = data2;
+      });*/
+      this.appointmentService.getAppointmentByImageId(this.imageInput.id).subscribe(appointments =>{
+        this.appointments = appointments;
+      });
+    }else{
+      this.appointments = [];
     }
   }
 
@@ -72,7 +73,7 @@ export class ViewerComponent implements OnInit, OnChanges{
     }, error =>{
       console.error(error);
     });
-   
+
     
   }
 
@@ -96,9 +97,9 @@ export class ViewerComponent implements OnInit, OnChanges{
         }).catch(error =>{
           console.error(error);
         });
-       /* this.appointmentService.getAppointmentByImageId(this.imageInput.id).subscribe(appointments =>{
+        this.appointmentService.getAppointmentByImageId(this.imageInput.id).subscribe(appointments =>{
           this.appointments = appointments;
-        });*/
+        });
       }
     }
    // this.getAppointment(this.appointmentsForm.get('id')?.value as string);

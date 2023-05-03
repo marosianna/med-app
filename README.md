@@ -38,4 +38,5 @@ A profil oldalon listázza az összes eddigi foglalást.
 
 Az időpontfoglalásnál listázza a kép alatt a táblázatban dátum szerint növekvő sorrendben a legelső 5 foglalást.
 
-**bug**Ha egyes rendeléshez még nincs foglalása a usernek, akkor a legutóbb listázott rendeléshez tartozó foglalások jelennek meg a táblázatban.
+**bug**Ha egyes rendeléshez még nincs foglalása a usernek, akkor az előzőekben betöltött rendelésekhez tartozó foglalások
+jelennek meg. Plusz, ez a táblázat csak azután jelenik meg, ha előbb rámentünk a profil oldalra.

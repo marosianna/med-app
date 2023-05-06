@@ -12,7 +12,6 @@ export class UserService {
 
   create(user: User){
     return this.afs.collection<User>(this.collectionName).doc(user.id).set(user);
-
   }
 
   getAll(){
@@ -30,5 +29,4 @@ export class UserService {
   delete(id: string){
     return this.afs.collection<User>(this.collectionName).doc(id).delete();
   }
-
 }

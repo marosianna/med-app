@@ -18,7 +18,6 @@ export class AppointmentService {
   create(appointment: Appointment){
     appointment.id = this.afs.createId();
     return this.afs.collection<Appointment>(this.collectionName).doc(appointment.id).set(appointment);
-
   }
 
   getAll(){
@@ -41,18 +40,11 @@ export class AppointmentService {
     return this.afs.collection<Appointment>(this.collectionName, ref => ref.where('id', '==', id)).valueChanges();
   }
 
-/*  getAppointmentsByImageIdAndDate(imageId: string, date: Date): Observable<Appointment[]> {
-    return this.afs.collection<Appointment>('appointments', ref => ref
-      .where('imageId', '==', imageId)
-      .where('date', '==', Timestamp.fromDate(date))
-    ).valueChanges();
-  }*/
-
   getAppointmentsByUsername(username?: string){
     return this.afs.collection<Appointment>(this.collectionName,  ref => ref.where('username', '==', username)).valueChanges();
-}
+  }
 
-getAppointmentsByUsernameAndId(username?: string, imageId?: string){
-  return this.afs.collection<Appointment>(this.collectionName,  ref => ref.where('username', '==', username).where('imageId', '==', imageId).orderBy('date', 'asc').limit(5)).valueChanges();
-}
+  getAppointmentsByUsernameAndId(username?: string, imageId?: string){
+    return this.afs.collection<Appointment>(this.collectionName,  ref => ref.where('username', '==', username).where('imageId', '==', imageId).orderBy('date', 'asc').limit(5)).valueChanges();
+  }
 }

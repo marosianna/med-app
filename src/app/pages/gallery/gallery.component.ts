@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//import { GalleryObject } from '../../shared/constants/constants';
 import { GalleryRoutingModule } from './gallery-routing.module';
 import { GalleryService } from '../../shared/services/gallery.service';
 import { Image } from '../../shared/models/Image';

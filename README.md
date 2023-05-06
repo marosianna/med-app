@@ -30,6 +30,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Az alkalmazásról
 
 A profil oldalon listázza az összes eddigi foglalást.
+**bug** Ha átmegyünk az időpontfoglalás oldalra, egyből betöltődik a fogorvosi rendelés, azonban a hozzá tartozó foglalások nem. Azok csak akkor, ha átmegyünk egy másik rendelésre, és vissza. 
 
 Az időpontfoglalásnál listázza a kép alatt a táblázatban dátum szerint növekvő sorrendben a legelső 5 foglalást.
+Ezeket lehet módosítani, törölni.
+
+A főoldalt, profil oldalt és az időpontfoglaló oldalt csak bejelentkezett felhasználó érheti el.
 

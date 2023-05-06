@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { GalleryRoutingModule } from './gallery-routing.module';
 import { GalleryComponent } from './gallery.component';
 import { ListComponent } from './list/list.component';

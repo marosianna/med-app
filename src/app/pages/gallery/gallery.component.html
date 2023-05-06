@@ -1,13 +1,2 @@
 <app-list [galleryObjectInput]="galleryObject" (imageObjectEmitter)="loadImage($event)"></app-list>
 <app-viewer [imageInput]="chosenImage"></app-viewer>
-
-<!--<div>
-    <select (change)="reload()" [(ngModel)]="chosenImage">
-        <option *ngFor="let obj of galleryObject" [ngValue]="obj">{{obj.type}}</option>
-    </select>
-    <div class="container" *ngIf="chosenImage">
-        <img class="galleryImage" [src]="'assets/' + chosenImage.id + '.jpg'"/>
-        <div class="break"></div>
-        <div>{{chosenImage.type}}</div>
-    </div>
-</div>-->

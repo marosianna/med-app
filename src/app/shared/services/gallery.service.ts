@@ -15,12 +15,10 @@ export class GalleryService {
   constructor(private http: HttpClient, private afs: AngularFirestore, private storage: AngularFireStorage) { }
 
   loadImageMeta(metaUrl: string): Observable<Array<Image>>{
-    //return this.http.get('http://localhost:4200/assets/' + metaUrl) as Observable<Array<Image>>;
     return this.afs.collection<Image>(this.collectionName).valueChanges();
   }
 
   loadImage(imageUrl: string){
-    //return this.http.get('http://localhost:4200/assets/' + imageUrl, {responseType: 'blob'});
     return this.storage.ref(imageUrl).getDownloadURL();
   }
 }

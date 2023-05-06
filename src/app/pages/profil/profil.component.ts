@@ -34,12 +34,9 @@ export class ProfilComponent implements OnInit {
     this.appointmentService.getAppointmentsByUsername(this.user?.username).subscribe(data2 =>{
       this.appointments = data2;
     });
-      
     }, error =>{
       console.error(error);
     });
-   
-    
   }
 
   userForm = this.createForm({
@@ -75,8 +72,6 @@ export class ProfilComponent implements OnInit {
     let formGroup = this.fb.group(model);
     formGroup.get('username')?.addValidators([Validators.required]);
     formGroup.get('email')?.addValidators([Validators.required]);
-
     return formGroup;
   }
-
 }

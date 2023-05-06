@@ -27,10 +27,9 @@ export class SignupComponent {
     })
   }, { validators: passwordMatchValidator });
 
-  
   onSubmit(){
     this.loading = true;
-    this.signUpForm.updateValueAndValidity(); // érvényesség ellenőrzése
+    this.signUpForm.updateValueAndValidity(); 
     if (this.signUpForm.invalid) {
       console.log('Az űrlap érvénytelen');
       this.loading = false;
@@ -61,11 +60,9 @@ export class SignupComponent {
   }
 
   constructor(private location: Location, private authService: AuthService, private userService: UserService, private router: Router){
-
   }
 
   goBack(){
     this.location.back();
   }
-
 }

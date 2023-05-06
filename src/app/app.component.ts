@@ -10,7 +10,7 @@ import { AuthService } from './shared/services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  //title = 'med-app';
+  title = 'med-app';
   page = '';
 
   routes: Array<string> = [];
@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
   }
 
   changePage(selectedPage: string){
-    //this.page = selectedPage;
     this.router.navigateByUrl(selectedPage);
   }
 
@@ -53,8 +52,6 @@ export class AppComponent implements OnInit {
       sidenav.close();
     }
   }
-
-
   logout(_?: boolean){
     this.authService.logout().then(() =>{
       console.log('Sikeres kijelentkezés!');

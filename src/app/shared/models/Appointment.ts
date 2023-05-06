@@ -1,4 +1,3 @@
-
 export interface Appointment{
     id: string;
     username?: string;
@@ -6,5 +5,4 @@ export interface Appointment{
     comment: string;
     imageId?: string; 
     time: string;
-    
 }

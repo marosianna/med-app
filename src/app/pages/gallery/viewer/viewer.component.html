@@ -1,57 +1,3 @@
-
-<!--
-<div class="container" *ngIf="imageInput">
-    <img class="galleryImage" [src]="loadedImage"/>
-    <div class="break"></div>
-    <div>{{imageInput.type}}</div>
-
-    <div class="break"></div>
-
-    <div class="break"></div>
-    <div *ngIf="appointments.length">
-        <table>
-            <tr>
-                <th>Rendelés típusa</th>
-                <th>Név</th>
-                <th>Időpont</th>
-                <th>Panasz</th>
-            </tr>
-            <tr *ngFor="let appointment of appointments">
-                <td>{{imageInput.type}}</td>
-                <td>{{appointment.username}}</td>
-                <td>{{appointment.date | dateFormat}}</td>
-                <td>{{appointment.comment}}</td>
-            </tr>
-        </table>
-    </div>
-    <div class="break"></div>
-    <form [formGroup]="appointmentsForm" (ngSubmit)="saveDate()">
-        <div>
-            <label for="type">Rendelés típusa: </label>
-            <input type="text" value={{imageInput.type}}/>
-        </div>
-        <div class="break"></div>
-        <div><label for="username">Név: </label>
-            <input type="text" formControlName="username"/>
-        </div>
-        <div class="break"></div>
-        <div>
-            <label for="date">Dátum: </label>
-            <input type="datetime-local" formControlName="date"/>
-        </div>
-        <div class="break"></div>
-        <div>
-            <textarea placeholder="Panasz rövid leírása" rows="10" cols="50" formControlName ="comment"></textarea>
-        </div>
-        <div class="break"></div>
-        <div>
-            <button type="submit">Időpont foglalása</button>
-        </div>
-    </form>
-</div>
--->
-
-
 <div class="div-card" *ngIf="imageInput">
     <mat-card fxLayout fxLayoutGap="20px">
         <span fxFlex="1 1 50%">
@@ -61,13 +7,11 @@
             </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-
             <img class="galleryImage" [src]="loadedImage"/>
             <div class="break"></div>
             <!--<div>{{imageInput.type}}</div>-->
             <form [formGroup]="appointmentsForm" (ngSubmit)="deleteAppointment()">
             <div class="center" *ngIf="appointments.length">
-                
                 <table mat-table>
                     <tr>
                         <th>Rendelés</th>
@@ -86,10 +30,8 @@
                         <td><button mat-raised-button color="primary" (click)="getAppointment(appointment.id)">Módosítás</button></td>
                     </tr>
                 </table>
-            
             </div>
         </form>
-    
         </mat-card-content>
         </span>
         <span fxFlex="1 1 50%">
@@ -135,8 +77,5 @@
             </form>
         </mat-card-actions>
         </span>
-       
     </mat-card>
-    
-
 </div>

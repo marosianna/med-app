@@ -48,15 +48,7 @@ export class ViewerComponent implements OnInit, OnChanges{
       this.appointmentsForm.get('imageId')?.setValue(this.imageInput.id);
       this.galleryService.loadImage(this.imageInput.image_url).subscribe(data =>{
        this.loadedImage = data;
-        /* let reader = new FileReader();
-        reader.readAsDataURL(data);
-        reader.onloadend = () => {
-          this.loadedImage = reader.result as string;
-        }*/
       });
-      /*this.appointmentService.getAppointmentsByUsername(this.user?.username).subscribe(data2 =>{
-        this.appointments = data2;
-      });*/
       if(this.user?.username){
       this.appointmentService.getAppointmentsByUsernameAndId(this.user.username, this.imageInput.id).subscribe(appointments =>{
         this.appointments = appointments;
@@ -83,7 +75,6 @@ export class ViewerComponent implements OnInit, OnChanges{
     formGroup.get('date')?.addValidators([Validators.required]);
     formGroup.get('comment')?.addValidators([Validators.required, Validators.minLength(20)]);
     formGroup.get('time')?.addValidators([Validators.required]);
-
     return formGroup;
   }
 
@@ -93,23 +84,15 @@ export class ViewerComponent implements OnInit, OnChanges{
         this.appointments.push({...this.appointmentsForm.value});
 
         this.appointmentService.create(this.appointmentsForm.value as Appointment).then(_ =>{
-         // this.router.navigateByUrl('/gallery/successful/' + this.appointmentsForm.get('username')?.value);
         }).catch(error =>{
           console.error(error);
         });
-       /* this.appointmentService.getAppointmentByImageId(this.imageInput.id).subscribe(appointments =>{
-          this.appointments = appointments;
-        });*/
-
         this.appointmentService.getAppointmentsByUsernameAndId(this.user?.username, this.imageInput.id).subscribe(appointments =>{
           this.appointments = appointments;
         });
       }
     }
-   // this.getAppointment(this.appointmentsForm.get('id')?.value as string);
   }
-
-  
 
   updateAppointment(){
     const appointment = this.appointmentsForm.value as Appointment;
@@ -122,34 +105,27 @@ export class ViewerComponent implements OnInit, OnChanges{
     .catch(error => {
       console.error(`Error updating appointment with id ${appointment.id}:`, error);
     });
-   // this.getAppointment(appointment.id);
  
   }
 
   saveDate(){
     const id = this.appointmentsForm.get('id')?.value;
+    const existingAppointment = this.appointments.find((appointment) => appointment.id === id);
 
-  // Check if the appointment with the given id already exists
-  const existingAppointment = this.appointments.find((appointment) => appointment.id === id);
-
-  if (existingAppointment) {
-    this.updateAppointment();
-  }else{
-    this.createDate();
+    if (existingAppointment) {
+      this.updateAppointment();
+    }else{
+      this.createDate();
+    }
+    const appointmentId = this.appointmentsForm.get('id')?.value;
+    this.getAppointment(appointmentId as string);
   }
-  const appointmentId = this.appointmentsForm.get('id')?.value;
-  this.getAppointment(appointmentId as string);
-}
 
-  
   getAppointment(id: string) {
     this.appointmentService.getAppointmentById(id).subscribe((appointments) => {
         console.log(`Appointment with id ${id} has been loaded`);
         const appointment = appointments[0];
         
-       
-
-    // Beállítjuk az űrlap mezőinek értékeit a kapott appointment adataira
     this.appointmentsForm.patchValue({
       id: appointment?.id,
       username: appointment?.username,
@@ -159,14 +135,10 @@ export class ViewerComponent implements OnInit, OnChanges{
       imageId: this.imageInput?.id
     });
       });
-     
   }
-  
-
 
   deleteAppointment() {
-    const id = this.id as string; // A megfelelő id értékének kinyerése az űrlapról
-  
+    const id = this.id as string; 
     this.appointmentService.delete(id)
       .then(() => {
         console.log(`Appointment with id ${id} has been deleted`);
@@ -176,7 +148,4 @@ export class ViewerComponent implements OnInit, OnChanges{
         console.error(`Error deleting appointment with id ${id}:`, error);
       });
   }
-
-  
 }
-

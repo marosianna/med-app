@@ -37,3 +37,5 @@ Ezeket lehet módosítani, törölni.
 
 A főoldalt, profil oldalt és az időpontfoglaló oldalt csak bejelentkezett felhasználó érheti el.
 
+**bug** Bejelentkezés után nem mindig dob át a főoldalra, ilyenkor újra meg kell nyomni a bejelentkezés gombot.
+

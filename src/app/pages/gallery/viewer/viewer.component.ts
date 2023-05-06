@@ -57,9 +57,11 @@ export class ViewerComponent implements OnInit, OnChanges{
       /*this.appointmentService.getAppointmentsByUsername(this.user?.username).subscribe(data2 =>{
         this.appointments = data2;
       });*/
-      this.appointmentService.getAppointmentByImageId(this.imageInput.id).subscribe(appointments =>{
+      if(this.user?.username){
+      this.appointmentService.getAppointmentsByUsernameAndId(this.user.username, this.imageInput.id).subscribe(appointments =>{
         this.appointments = appointments;
       });
+    }
     }else{
       this.appointments = [];
     }
@@ -73,8 +75,6 @@ export class ViewerComponent implements OnInit, OnChanges{
     }, error =>{
       console.error(error);
     });
-
-    
   }
 
   createForm(model: Appointment){
@@ -97,7 +97,11 @@ export class ViewerComponent implements OnInit, OnChanges{
         }).catch(error =>{
           console.error(error);
         });
-        this.appointmentService.getAppointmentByImageId(this.imageInput.id).subscribe(appointments =>{
+       /* this.appointmentService.getAppointmentByImageId(this.imageInput.id).subscribe(appointments =>{
+          this.appointments = appointments;
+        });*/
+
+        this.appointmentService.getAppointmentsByUsernameAndId(this.user?.username, this.imageInput.id).subscribe(appointments =>{
           this.appointments = appointments;
         });
       }
@@ -147,11 +151,11 @@ export class ViewerComponent implements OnInit, OnChanges{
 
     // Beállítjuk az űrlap mezőinek értékeit a kapott appointment adataira
     this.appointmentsForm.patchValue({
-      id: appointment.id,
-      username: appointment.username,
-      date: appointment.date,
-      time: appointment.time,
-      comment: appointment.comment,
+      id: appointment?.id,
+      username: appointment?.username,
+      date: appointment?.date,
+      time: appointment?.time,
+      comment: appointment?.comment,
       imageId: this.imageInput?.id
     });
       });

@@ -4,7 +4,7 @@ import { GalleryComponent } from './gallery.component';
 
 const routes: Routes = [
   {path: '', component: GalleryComponent },
-  { path: 'successful', loadChildren: () => import('./successful/successful.module').then(m => m.SuccessfulModule) }
+ // { path: 'successful', loadChildren: () => import('./successful/successful.module').then(m => m.SuccessfulModule) }
 ];
 
 @NgModule({

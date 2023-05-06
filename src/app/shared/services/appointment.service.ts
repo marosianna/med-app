@@ -51,4 +51,8 @@ export class AppointmentService {
   getAppointmentsByUsername(username?: string){
     return this.afs.collection<Appointment>(this.collectionName,  ref => ref.where('username', '==', username)).valueChanges();
 }
+
+getAppointmentsByUsernameAndId(username?: string, imageId?: string){
+  return this.afs.collection<Appointment>(this.collectionName,  ref => ref.where('username', '==', username).where('imageId', '==', imageId).orderBy('date', 'asc').limit(5)).valueChanges();
+}
 }

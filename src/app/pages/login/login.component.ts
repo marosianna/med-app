@@ -1,7 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FakeLoadingService } from '../../shared/services/fake-loading.service';
 import { Observable, Subscription } from 'rxjs';
 import { AuthService } from '../../shared/services/auth.service';
 
@@ -10,7 +9,7 @@ import { AuthService } from '../../shared/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnDestroy {
+export class LoginComponent {
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -31,7 +30,7 @@ export class LoginComponent implements OnDestroy {
   }
   
 
-  constructor(private router: Router, private loadingService: FakeLoadingService, private authService: AuthService){
+  constructor(private router: Router, private authService: AuthService){
 
   }
 
@@ -52,9 +51,7 @@ export class LoginComponent implements OnDestroy {
     this.loading = false;
   }
   }
-  ngOnDestroy(){
-    this.loadingSubscription?.unsubscribe();
-}
+  
    /* // promise, aszinkron
     this.loadingService.loadingWithPromise(this.email.value, this.password.value).then((_: boolean) => {
       this.router.navigateByUrl('/main');
@@ -87,7 +84,10 @@ export class LoginComponent implements OnDestroy {
             this.loading = false;
           }
         }
-      );*/
-
+      );
+      ngOnDestroy(){
+        this.loadingSubscription?.unsubscribe();
+    }
+    */
      
 }

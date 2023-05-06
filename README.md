@@ -29,14 +29,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Az alkalmazásról
 
-**bug**Bejelentkezésnél nem mindig dob át elsőre a főoldalra, ilyenkor nyomd meg mégegyszer a bejelentkezés gombot.
-
-**bug**Ha új időpontot foglalsz, megjelenik a rendelés képe alatt egy táblázatban az adott foglalás, ott tudod törölni vagy módosítani.
-**bug**Amennyiben módosítasz, a dátum betöltéséhez a táblázatban, meg kell nyomni mégegyszer az időpont foglalása gombot.
-
 A profil oldalon listázza az összes eddigi foglalást.
 
 Az időpontfoglalásnál listázza a kép alatt a táblázatban dátum szerint növekvő sorrendben a legelső 5 foglalást.
 
-**bug**Ha egyes rendeléshez még nincs foglalása a usernek, akkor az előzőekben betöltött rendelésekhez tartozó foglalások
-jelennek meg. Plusz, ez a táblázat csak azután jelenik meg, ha előbb rámentünk a profil oldalra.

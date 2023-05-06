@@ -20,7 +20,13 @@
             </mat-form-field>
             </form>
         </mat-card-actions>
+        
         <div class="div-flex" *ngIf="appointments.length">
+            <mat-card-header>
+                <mat-card-title>
+                    Foglalt időpontok
+                </mat-card-title>
+            </mat-card-header>
             <table mat-table>
                 <tr>
                     <th>Rendelés</th>
